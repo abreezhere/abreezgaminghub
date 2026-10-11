@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030711">
+<title>ABREEZ GAMING HUB</title>
+<style>
+:root {
+  --bg:#030711;
+  --panel:#091426;
+  --cyan:#00d9ff;
+  --blue:#1677ff;
+  --purple:#bd35ff;
+  --white:#eef8ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:var(--bg);color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(ellipse at 15% 20%,#063d6544,transparent 45%),
+    radial-gradient(ellipse at 85% 25%,#5b087c33,transparent 40%),
+    linear-gradient(120deg,#02050b,#071326 55%,#080514);
+}
+.rgb{
+  background:linear-gradient(90deg,var(--cyan),#318bff,var(--purple),var(--cyan));
+  background-size:250% auto;color:transparent;background-clip:text;
+  -webkit-background-clip:text;animation:rgb 5s linear infinite;
+}
+@keyframes rgb{to{background-position:250% center}}
+button,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.screen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:24px 16px;
+}
+.panel{
+  width:min(100%,460px);padding:30px 24px;text-align:center;
+  border:1px solid #168bdf88;border-radius:22px;
+  background:linear-gradient(145deg,#071323ed,#050915f5);
+  box-shadow:0 0 35px #007bff16,inset 0 0 30px #0b68a00a;
+}
+.brand{font-size:clamp(27px,7vw,43px);font-weight:900;letter-spacing:7px}
+.subtitle{font-size:11px;letter-spacing:5px;color:#d5eaff;margin-top:5px}
+.logo-wrap{
+  position:relative;width:min(70vw,270px);aspect-ratio:1;margin:0 auto 24px;
+  display:grid;place-items:center;
+}
+.ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:3px solid transparent;
+  border-top-color:var(--purple);border-right-color:var(--purple);
+  border-bottom-color:var(--cyan);border-left-color:var(--cyan);
+  box-shadow:0 0 18px #008dff55,inset 0 0 18px #008dff22;
+  animation:spin 4s linear infinite;
+}
+.ring:before{
+  content:"";position:absolute;inset:12px;border-radius:50%;
+  border:1px dashed #168bff88;
+}
+.logo-a{
+  font-size:clamp(100px,28vw,175px);font-weight:900;font-style:italic;
+  line-height:1;letter-spacing:-15px;padding-right:15px;
+  filter:drop-shadow(0 0 18px #00bfff88);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.intro .logo-wrap{animation:arrive 1.5s ease both}
+@keyframes arrive{
+  0%{opacity:0;transform:scale(.35) rotate(-45deg)}
+  65%{opacity:1;transform:scale(1.08) rotate(8deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+.track{height:9px;background:#111e32;border:1px solid #1d4671;border-radius:20px;overflow:hidden;margin:18px 0 8px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple));box-shadow:0 0 15px var(--cyan);transition:width .15s}
+.small{color:#9eb5d0;font-size:13px;line-height:1.7}
+h1{font-size:25px;margin:8px 0 10px}
+.key-input{
+  display:block;width:100%;margin:24px 0 14px;padding:16px 14px;
+  color:white;background:#030b18;border:1px solid #1b6a9c;
+  border-radius:10px;outline:none;text-align:center;
+}
+.key-input:focus{border-color:var(--cyan);box-shadow:0 0 15px #00bfff30}
+.primary{
+  width:100%;padding:15px;border:1px solid #00d9ff66;border-radius:10px;
+  color:#00101c;font-weight:900;
+  background:linear-gradient(100deg,var(--cyan),#438cff,var(--purple));
+  background-size:200% 100%;animation:rgb 5s linear infinite;
+}
+.primary:disabled{opacity:.5;cursor:wait}
+.status{min-height:25px;margin-top:14px;font-weight:800}
+.green{color:#32f6a0;text-shadow:0 0 14px #00ff8a66}
+.red{color:#ff5d76;text-shadow:0 0 14px #ff224466}
+.check-ring{
+  width:130px;height:130px;border:3px solid var(--cyan);border-radius:50%;
+  display:grid;place-items:center;margin:20px auto;font-size:65px;
+  box-shadow:0 0 35px #00cfff33;animation:pulse 1.5s infinite alternate;
+}
+@keyframes pulse{to{box-shadow:0 0 38px #00d9ff77;transform:scale(1.03)}}
+header{
+  position:sticky;top:0;z-index:3;background:#030711eF;
+  border-bottom:1px solid #163a5c;padding:13px 18px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.mini-brand{font-weight:900;letter-spacing:2px}
+.search{width:min(45%,330px);background:#071323;border:1px solid #1c6a9a;border-radius:20px;padding:11px;color:white}
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 60px)}
+aside{padding:22px 14px;border-right:1px solid #14334e;background:#030916}
+.nav{display:block;width:100%;text-align:left;margin:7px 0;padding:13px;border:1px solid transparent;border-radius:9px;color:#d5e7fa;background:transparent}
+.nav:hover,.nav.active{border-color:#008bff;background:linear-gradient(90deg,#063e72,#321054);box-shadow:0 0 14px #008cff22}
+main{padding:24px;min-width:0}
+.hero{
+  padding:35px 22px;border:1px solid #1763a3;border-radius:18px;
+  background:radial-gradient(ellipse at 85% 20%,#34136a99,transparent 40%),linear-gradient(120deg,#07192c,#050916);
+  margin-bottom:25px;
+}
+.hero h1{font-size:clamp(28px,5vw,46px);letter-spacing:2px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{
+  padding:18px 13px;border:1px solid #087db4;border-radius:15px;
+  background:linear-gradient(155deg,#0a1d35,#070a16);min-width:0;
+}
+.card:nth-child(2){border-color:#a52cf5}
+.card-icon{font-size:34px;margin-bottom:15px}
+.card h3{font-size:16px;line-height:1.4}
+.card p{font-size:12px;color:#abc2db;line-height:1.6}
+.card button{width:100%;margin-top:8px;padding:11px 5px;border-radius:8px;background:#07385a;border:1px solid #08baff;color:white}
+.file-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px}
+.file-card{padding:18px;border:1px solid #194a71;background:#081426;border-radius:12px}
+footer{text-align:center;color:#718ca9;font-size:12px;padding:24px}
+@media(max-width:750px){
+ .layout{grid-template-columns:1fr}
+ aside{border-right:0;border-bottom:1px solid #14334e;display:flex;overflow:auto;gap:6px;padding:10px}
+ .nav{white-space:nowrap;width:auto;flex:0 0 auto;margin:0;padding:10px}
+ .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+ main{padding:15px}
+ header{padding:12px}
+ .mini-brand{font-size:13px;letter-spacing:1px}
+ .search{width:44%;min-width:100px}
+ .panel{padding:26px 19px}
+}
+@media(max-width:380px){.cards{grid-template-columns:1fr}.subtitle{letter-spacing:3px}}
+</style>
+</head>
+<body>
+
+<!-- INTRO: six seconds -->
+<section id="intro" class="screen intro">
+ <div class="panel">
+  <div class="logo-wrap">
+   <div class="ring"></div>
+   <div class="logo-a rgb">A</div>
+  </div>
+  <div class="brand rgb">ABREEZ</div>
+  <div class="subtitle">GAMING HUB</div>
+  <p class="small" id="introText">INITIALIZING GAMING HUB...</p>
+  <div class="track"><div id="introBar" class="bar"></div></div>
+  <div style="display:flex;justify-content:space-between;font-size:12px">
+   <span>LOADING</span><strong id="introPercent" class="rgb">0%</strong>
+  </div>
+ </div>
+</section>
+
+<!-- LICENSE -->
+<section id="license" class="screen hidden">
+ <div class="panel">
+  <div class="brand rgb">ABREEZ</div><div class="subtitle">GAMING HUB</div>
+  <div class="check-ring" style="color:#00d9ff">🔒</div>
+  <h1 class="rgb">ENTER YOUR LICENSE KEY</h1>
+  <p class="small">This website is protected. Enter your license key to continue.</p>
+  <form id="licenseForm">
+   <input id="licenseInput" class="key-input" autocomplete="off" placeholder="Enter your license key..." required>
+   <button id="verifyBtn" class="primary" type="submit">🛡 VERIFY KEY →</button>
+  </form>
+  <div id="licenseStatus" class="status" aria-live="polite"></div>
+  <p class="small">Need a license? Contact the website owner.</p>
+ </div>
+</section>
+
+<!-- VERIFYING -->
+<section id="verifying" class="screen hidden">
+ <div class="panel">
+  <div class="brand rgb">ABREEZ</div><div class="subtitle">GAMING HUB</div>
+  <div class="logo-wrap" style="width:170px;margin-top:25px">
+   <div class="ring"></div><div class="logo-a rgb" style="font-size:95px">A</div>
+  </div>
+  <h1 class="rgb">VERIFYING YOUR KEY...</h1>
+  <p class="small">Please wait while we check your license.</p>
+  <div class="track"><div id="verifyBar" class="bar"></div></div>
+  <div id="verifyStatus" class="small">Checking license...</div>
+ </div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="screen hidden">
+ <div class="panel">
+  <div id="resultIcon" class="check-ring">✓</div>
+  <h1 id="resultTitle" class="green">ACCESS GRANTED!</h1>
+  <p id="resultText" class="small">Welcome to Abreez Gaming Hub.</p>
+  <div id="resultBarWrap" class="track"><div id="resultBar" class="bar"></div></div>
+  <button id="continueBtn" class="primary">ENTER DASHBOARD →</button>
+  <button id="retryBtn" class="primary hidden" style="margin-top:10px">TRY AGAIN</button>
+ </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden">
+ <header>
+  <div class="mini-brand rgb">✦ ABREEZ</div>
+  <input id="search" class="search" placeholder="⌕ Search resources...">
+ </header>
+ <div class="layout">
+  <aside>
+   <button class="nav active" data-category="Home">⌂ Home</button>
+   <button class="nav" data-category="App Links">▦ App Links</button>
+   <button class="nav" data-category="Proxy Servers">▤ Proxy Servers</button>
+   <button class="nav" data-category="Other Games">🎮 Other Games</button>
+   <button class="nav" data-category="Other Services">⚙ Other Services</button>
+   <button class="nav" data-category="About Us">ⓘ About Us</button>
+   <button class="nav" data-category="Contact">✉ Contact</button>
+   <button class="nav" data-category="Support">♧ Support</button>
+   <button class="nav" id="logoutBtn">↪ Logout</button>
+  </aside>
+  <main>
+   <section class="hero">
+    <p class="small">WELCOME TO</p>
+    <h1 class="rgb">ABREEZ GAMING HUB</h1>
+    <p>LEVEL UP YOUR GAMING EXPERIENCE</p>
+    <p class="small">✧ Premium resources &nbsp; ✧ Regular updates &nbsp; ✧ Member access</p>
+   </section>
+   <div class="cards" id="categoryCards">
+    <article class="card" data-name="App Links">
+     <div class="card-icon">▣</div><h3>APP LINKS</h3><p>Useful apps and tools.</p><button data-open="App Links">Explore Apps →</button>
+    </article>
+    <article class="card" data-name="Proxy Servers">
+     <div class="card-icon">◈</div><h3>PROXY SERVERS</h3><p>Resource links and server information.</p><button data-open="Proxy Servers">View Servers →</button>
+    </article>
+    <article class="card" data-name="Other Games">
+     <div class="card-icon">🎮</div><h3>OTHER GAMES</h3><p>Links for supported games.</p><button data-open="Other Games">Explore Games →</button>
+    </article>
+    <article class="card" data-name="Other Services">
+     <div class="card-icon">⚙</div><h3>OTHER SERVICES</h3><p>Useful websites and services.</p><button data-open="Other Services">View Services →</button>
+    </article>
+   </div>
+   <h2 id="resourceHeading" class="rgb" style="margin-top:35px">LATEST RESOURCES</h2>
+   <p id="emptyNote" class="small">Your resources will appear here when links are added by the owner.</p>
+   <div id="resourceList" class="file-list"></div>
+   <section id="ownerPanel" class="panel hidden" style="margin:30px auto">
+    <h2 class="rgb">OWNER PANEL</h2>
+    <p class="small">Local preview only. Server protection must be configured before live use.</p>
+    <form id="resourceForm">
+     <input id="resourceName" class="key-input" placeholder="Resource name" required>
+     <select id="resourceCategory" class="key-input" style="text-align:left">
+      <option>App Links</option><option>Proxy Servers</option><option>Other Games</option><option>Other Services</option>
+     </select>
+     <input id="resourceUrl" class="key-input" type="url" placeholder="Authorized download URL (https://...)" required>
+     <button class="primary" type="submit">ADD RESOURCE PREVIEW</button>
+    </form>
+    <p class="small">This preview does not save resources to a server.</p>
+   </section>
+  </main>
+ </div>
+ <footer>ABREEZ GAMING HUB · GAMING RESOURCES</footer>
+</section>
+
+<!-- FILE PAGE -->
+<section id="filePage" class="screen hidden">
+ <div class="panel">
+  <button id="backBtn" class="nav">← Back to Dashboard</button>
+  <div class="logo-wrap" style="width:200px;margin-top:20px">
+   <div class="ring"></div><div class="logo-a rgb">A</div>
+  </div>
+  <h1 id="fileTitle" class="rgb">RESOURCE DOWNLOAD</h1>
+  <p class="small">Your selected resource is ready.</p>
+  <div class="track"><div id="fileBar" class="bar"></div></div>
+  <h3 id="downloadText">Starting Download... 0%</h3>
+  <p class="small">You will be redirected to the supplied external download page.</p>
+  <button id="downloadBtn" class="primary">CONTINUE TO DOWNLOAD →</button>
+ </div>
+</section>
+
+<script>
+const $=id=>document.getElementById(id);
+const screens=["intro","license","verifying","result","dashboard","filePage"];
+function show(id){
+ screens.forEach(s=>$(s).classList.toggle("hidden",s!==id));
+ window.scrollTo(0,0);
+}
+let demoUnlocked=false;
+let selectedResource=null;
+let resources=[];
+function startIntro(){
+ show("intro");
+ let start=Date.now(),duration=6000;
+ const tick=()=>{
+  let p=Math.min(100,Math.floor((Date.now()-start)/duration*100));
+  $("introBar").style.width=p+"%";
+  $("introPercent").textContent=p+"%";
+  if(p<100)requestAnimationFrame(tick);
+  else show("license");
+ };
+ requestAnimationFrame(tick);
+}
+$("licenseForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const key=$("licenseInput").value.trim();
+ if(!key)return;
+ $("licenseStatus").textContent="";
+ $("verifyBar").style.width="0%";
+ show("verifying");
+ let p=0;
+ const timer=setInterval(()=>{
+  p=Math.min(100,p+10);$("verifyBar").style.width=p+"%";
+  $("verifyStatus").textContent=p<100?"Checking license...":"Verification response received.";
+  if(p>=100){
+   clearInterval(timer);
+   // Demo mode is intentionally not real authentication.
+   setTimeout(()=>{
+    show("result");
+    $("resultIcon").textContent="✕";
+    $("resultIcon").style.color="#ff526d";
+    $("resultIcon").style.borderColor="#ff526d";
+    $("resultTitle").textContent="ACCESS FAILED";
+    $("resultTitle").className="red";
+    $("resultText").textContent="Secure server verification is not connected yet.";
+    $("resultBarWrap").classList.add("hidden");
+    $("continueBtn").classList.add("hidden");
+    $("retryBtn").classList.remove("hidden");
+   },350);
+  }
+ },100);
+});
+$("retryBtn").onclick=()=>{
+ $("licenseInput").value="";
+ $("licenseStatus").textContent="";
+ show("license");
+};
+$("continueBtn").onclick=()=>{demoUnlocked=true;show("dashboard")};
+$("logoutBtn").onclick=()=>{demoUnlocked=false;startIntro()};
+$("backBtn").onclick=()=>show("dashboard");
+function openCategory(cat){
+ $("resourceHeading").textContent=cat.toUpperCase();
+ document.querySelectorAll(".card").forEach(c=>{
+  c.style.display=(cat==="Home"||c.dataset.name===cat)?"":"none";
+ });
+ renderResources(cat);
+}
+document.querySelectorAll("[data-category]").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll("[data-category]").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active");openCategory(b.dataset.category);
+});
+document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openCategory(b.dataset.open));
+function renderResources(cat="Home",query=""){
+ const list=$("resourceList");list.innerHTML="";
+ const matches=resources.filter(r=>(cat==="Home"||r.category===cat)&&
+  (r.name.toLowerCase().includes(query.toLowerCase())));
+ $("emptyNote").classList.toggle("hidden",matches.length>0);
+ matches.forEach(r=>{
+  const el=document.createElement("article");el.className="file-card";
+  const title=document.createElement("h3");title.textContent=r.name;
+  const category=document.createElement("p");category.className="small";category.textContent=r.category;
+  const btn=document.createElement("button");btn.className="primary";btn.textContent="VIEW DOWNLOAD";
+  btn.onclick=()=>{selectedResource=r;$("fileTitle").textContent=r.name;show("filePage");};
+  el.append(title,category,btn);list.appendChild(el);
+ });
+}
+let currentCategory="Home";
+$("search").addEventListener("input",e=>renderResources(currentCategory,e.target.value));
+$("resourceForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ // Local preview only; not persisted and not secure admin auth.
+ const name=$("resourceName").value.trim();
+ const category=$("resourceCategory").value;
+ const url=$("resourceUrl").value.trim();
+ if(!name||!url)return;
+ resources.push({name,category,url});
+ $("resourceForm").reset();renderResources(currentCategory,$("search").value);
+});
+$("downloadBtn").onclick=()=>{
+ if(!selectedResource)return;
+ $("downloadText").textContent="Starting Download... 0%";
+ $("fileBar").style.width="0%";
+ let p=0;
+ const timer=setInterval(()=>{
+  p=Math.min(100,p+10);$("fileBar").style.width=p+"%";
+  $("downloadText").textContent="Starting Download... "+p+"%";
+  if(p>=100){
+   clearInterval(timer);
+   // Redirect only to a link the owner supplied.
+   try{
+    const u=new URL(selectedResource.url);
+    if(u.protocol==="https:")window.location.href=u.href;
+    else $("downloadText").textContent="Only HTTPS links are allowed.";
+   }catch{ $("downloadText").textContent="Invalid download URL."; }
+  }
+ },600);
+};
+startIntro();
+</script>
+</body>
+</html>
