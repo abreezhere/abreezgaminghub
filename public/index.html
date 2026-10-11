@@ -306,7 +306,77 @@ function startIntro(){
  };
  requestAnimationFrame(tick);
 }
-$("licenseForm").addEventListener("submit",async e=>{
+
+$("licenseForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const key = $("licenseInput").value.trim();
+  if (!key) {
+    $("licenseStatus").textContent = "Please enter your license key.";
+    return;
+  }
+
+  $("licenseStatus").textContent = "";
+  $("verifyBar").style.width = "0%";
+  show("verifying");
+
+  let progress = 0;
+  const timer = setInterval(() => {
+    progress = Math.min(90, progress + 10);
+    $("verifyBar").style.width = progress + "%";
+  }, 150);
+
+  try {
+    const response = await fetch("/api/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key })
+    });
+
+    const data = await response.json();
+    clearInterval(timer);
+    $("verifyBar").style.width = "100%";
+    show("result");
+
+    if (response.ok && data.ok) {
+      $("resultIcon").textContent = "✓";
+      $("resultIcon").style.color = "#32f6a0";
+      $("resultIcon").style.borderColor = "#32f6a0";
+      $("resultTitle").textContent = "ACCESS GRANTED!";
+      $("resultTitle").className = "green";
+      $("resultText").textContent = "Welcome to Abreez Gaming Hub.";
+      $("resultBarWrap").classList.remove("hidden");
+      $("resultBar").style.width = "100%";
+      $("continueBtn").classList.remove("hidden");
+      $("retryBtn").classList.add("hidden");
+    } else {
+      $("resultIcon").textContent = "✕";
+      $("resultIcon").style.color = "#ff526d";
+      $("resultIcon").style.borderColor = "#ff526d";
+      $("resultTitle").textContent = "ACCESS FAILED";
+      $("resultTitle").className = "red";
+      $("resultText").textContent =
+        data.message || "Invalid license key. Try again.";
+      $("resultBarWrap").classList.add("hidden");
+      $("continueBtn").classList.add("hidden");
+      $("retryBtn").classList.remove("hidden");
+    }
+  } catch {
+    clearInterval(timer);
+    show("result");
+    $("resultIcon").textContent = "✕";
+    $("resultIcon").style.color = "#ff526d";
+    $("resultIcon").style.borderColor = "#ff526d";
+    $("resultTitle").textContent = "SERVER NOT CONNECTED";
+    $("resultTitle").className = "red";
+    $("resultText").textContent =
+      "Please try again after server setup.";
+    $("resultBarWrap").classList.add("hidden");
+    $("continueBtn").classList.add("hidden");
+    $("retryBtn").classList.remove("hidden");
+  }
+});
+
  e.preventDefault();
  const key=$("licenseInput").value.trim();
  if(!key)return;
